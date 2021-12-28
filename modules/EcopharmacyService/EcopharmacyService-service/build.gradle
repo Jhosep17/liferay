@@ -1,0 +1,11 @@
+dependencies {
+	compile project(":modules:EcopharmacyService:EcopharmacyService-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
+
+buildService {
+	apiDir = "../EcopharmacyService-api/src/main/java"
+}
+
+group = "edu.ecopharmacy.nttdata"

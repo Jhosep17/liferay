@@ -1,0 +1,10 @@
+Bundle-Name: EcopharmacyService-api
+Bundle-SymbolicName: edu.ecopharmacy.nttdata.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	edu.ecopharmacy.nttdata.exception,\
+	edu.ecopharmacy.nttdata.model,\
+	edu.ecopharmacy.nttdata.service,\
+	edu.ecopharmacy.nttdata.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../EcopharmacyService-service/service.xml
