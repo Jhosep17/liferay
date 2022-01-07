@@ -83,10 +83,10 @@ public class ProductCacheModel implements CacheModel<Product>, Externalizable {
 		sb.append(description);
 		sb.append(", price=");
 		sb.append(price);
-		sb.append(", category=");
-		sb.append(category);
 		sb.append(", images=");
 		sb.append(images);
+		sb.append(", categoryId=");
+		sb.append(categoryId);
 		sb.append("}");
 
 		return sb.toString();
@@ -138,19 +138,14 @@ public class ProductCacheModel implements CacheModel<Product>, Externalizable {
 
 		productImpl.setPrice(price);
 
-		if (category == null) {
-			productImpl.setCategory("");
-		}
-		else {
-			productImpl.setCategory(category);
-		}
-
 		if (images == null) {
 			productImpl.setImages("");
 		}
 		else {
 			productImpl.setImages(images);
 		}
+
+		productImpl.setCategoryId(categoryId);
 
 		productImpl.resetOriginalValues();
 
@@ -173,8 +168,9 @@ public class ProductCacheModel implements CacheModel<Product>, Externalizable {
 		description = objectInput.readUTF();
 
 		price = objectInput.readDouble();
-		category = objectInput.readUTF();
 		images = objectInput.readUTF();
+
+		categoryId = objectInput.readLong();
 	}
 
 	@Override
@@ -213,19 +209,14 @@ public class ProductCacheModel implements CacheModel<Product>, Externalizable {
 
 		objectOutput.writeDouble(price);
 
-		if (category == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(category);
-		}
-
 		if (images == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(images);
 		}
+
+		objectOutput.writeLong(categoryId);
 	}
 
 	public long productId;
@@ -238,7 +229,7 @@ public class ProductCacheModel implements CacheModel<Product>, Externalizable {
 	public String name;
 	public String description;
 	public double price;
-	public String category;
 	public String images;
+	public long categoryId;
 
 }

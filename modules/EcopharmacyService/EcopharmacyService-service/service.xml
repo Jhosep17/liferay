@@ -24,10 +24,71 @@
         <column name="name" type="String"></column>
         <column name="description" type="String"></column>
         <column name="price" type="Double"></column>
-        <column name="category" type="String"></column>
         <column name="images" type="String"></column>
+        <column name="categoryId" type="long"></column>
         <finder name="ProductName" return-type="Collection">
             <finder-column name="name"></finder-column>
+        </finder>
+	</entity>
+	<entity local-service="true" name="Sede" remote-service="false">
+        <column name="sedeId" primary="true" type="long"></column>
+        <column name="groupId" type="long"></column>
+        <column name="companyId" type="long"></column>
+        <column name="userId" type="long"></column>
+        <column name="userName" type="String"></column>
+        <column name="createDate" type="Date"></column>
+        <column name="modifiedDate" type="Date"></column>
+        <column name="name" type="String"></column>
+        <column name="direction" type="String"></column>
+        <column name="phone" type="String"></column>
+    </entity>
+	<entity name="Inventory" local-service="true"
+		remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="inventoryId" primary="true" type="long"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <column name="productId" type="long"></column>
+        <column name="sedeId" type="long"></column>
+        <column name="stock" type="Integer"></column>
+        <finder name="SedeId" return-type="Collection">
+            <finder-column name="sedeId"></finder-column>
+        </finder>
+	</entity>
+	<entity name="Category" local-service="true"
+		remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="categoryId" primary="true" type="long"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <column name="code" type="String"></column>
+        <column name="name" type="String"></column>
+        <finder name="CategoryId" return-type="Category">
+            <finder-column name="categoryId"></finder-column>
         </finder>
 	</entity>
 </service-builder>

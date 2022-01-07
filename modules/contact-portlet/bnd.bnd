@@ -1,0 +1,4 @@
+Bundle-Name: contact-portlet
+Bundle-SymbolicName: edu.ecopharmacy.nttdata.contact
+Bundle-Version: 1.0.0
+Export-Package: edu.ecopharmacy.nttdata.contact.constants

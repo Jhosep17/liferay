@@ -41,7 +41,10 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import edu.ecopharmacy.nttdata.model.Product;
 import edu.ecopharmacy.nttdata.service.ProductLocalService;
 import edu.ecopharmacy.nttdata.service.ProductLocalServiceUtil;
+import edu.ecopharmacy.nttdata.service.persistence.CategoryPersistence;
+import edu.ecopharmacy.nttdata.service.persistence.InventoryPersistence;
 import edu.ecopharmacy.nttdata.service.persistence.ProductPersistence;
+import edu.ecopharmacy.nttdata.service.persistence.SedePersistence;
 
 import java.io.Serializable;
 
@@ -436,10 +439,19 @@ public abstract class ProductLocalServiceBaseImpl
 		}
 	}
 
+	@Reference
+	protected CategoryPersistence categoryPersistence;
+
+	@Reference
+	protected InventoryPersistence inventoryPersistence;
+
 	protected ProductLocalService productLocalService;
 
 	@Reference
 	protected ProductPersistence productPersistence;
+
+	@Reference
+	protected SedePersistence sedePersistence;
 
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService

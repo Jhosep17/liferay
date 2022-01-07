@@ -260,6 +260,12 @@ public class ProductLocalServiceUtil {
 		return getService().getProducts(start, end);
 	}
 
+	public static List<edu.ecopharmacy.nttdata.bean.ProductBean>
+		getProductsAll() {
+
+		return getService().getProductsAll();
+	}
+
 	/**
 	 * Returns the number of products.
 	 *
@@ -270,7 +276,7 @@ public class ProductLocalServiceUtil {
 	}
 
 	public static Product saveProduct(
-		String name, String description, String category, Double price,
+		String name, String description, long category, Double price,
 		String image) {
 
 		return getService().saveProduct(

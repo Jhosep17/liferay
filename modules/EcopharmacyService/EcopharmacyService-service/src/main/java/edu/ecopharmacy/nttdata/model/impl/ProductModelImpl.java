@@ -72,7 +72,7 @@ public class ProductModelImpl
 		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
 		{"modifiedDate", Types.TIMESTAMP}, {"name", Types.VARCHAR},
 		{"description", Types.VARCHAR}, {"price", Types.DOUBLE},
-		{"category", Types.VARCHAR}, {"images", Types.VARCHAR}
+		{"images", Types.VARCHAR}, {"categoryId", Types.BIGINT}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -89,12 +89,12 @@ public class ProductModelImpl
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("price", Types.DOUBLE);
-		TABLE_COLUMNS_MAP.put("category", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("images", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("categoryId", Types.BIGINT);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table VC_Product (productId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,price DOUBLE,category VARCHAR(75) null,images VARCHAR(75) null)";
+		"create table VC_Product (productId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,price DOUBLE,images VARCHAR(75) null,categoryId LONG)";
 
 	public static final String TABLE_SQL_DROP = "drop table VC_Product";
 
@@ -291,12 +291,12 @@ public class ProductModelImpl
 		attributeGetterFunctions.put("price", Product::getPrice);
 		attributeSetterBiConsumers.put(
 			"price", (BiConsumer<Product, Double>)Product::setPrice);
-		attributeGetterFunctions.put("category", Product::getCategory);
-		attributeSetterBiConsumers.put(
-			"category", (BiConsumer<Product, String>)Product::setCategory);
 		attributeGetterFunctions.put("images", Product::getImages);
 		attributeSetterBiConsumers.put(
 			"images", (BiConsumer<Product, String>)Product::setImages);
+		attributeGetterFunctions.put("categoryId", Product::getCategoryId);
+		attributeSetterBiConsumers.put(
+			"categoryId", (BiConsumer<Product, Long>)Product::setCategoryId);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -491,25 +491,6 @@ public class ProductModelImpl
 	}
 
 	@Override
-	public String getCategory() {
-		if (_category == null) {
-			return "";
-		}
-		else {
-			return _category;
-		}
-	}
-
-	@Override
-	public void setCategory(String category) {
-		if (_columnOriginalValues == Collections.EMPTY_MAP) {
-			_setColumnOriginalValues();
-		}
-
-		_category = category;
-	}
-
-	@Override
 	public String getImages() {
 		if (_images == null) {
 			return "";
@@ -526,6 +507,20 @@ public class ProductModelImpl
 		}
 
 		_images = images;
+	}
+
+	@Override
+	public long getCategoryId() {
+		return _categoryId;
+	}
+
+	@Override
+	public void setCategoryId(long categoryId) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_categoryId = categoryId;
 	}
 
 	public long getColumnBitmask() {
@@ -592,8 +587,8 @@ public class ProductModelImpl
 		productImpl.setName(getName());
 		productImpl.setDescription(getDescription());
 		productImpl.setPrice(getPrice());
-		productImpl.setCategory(getCategory());
 		productImpl.setImages(getImages());
+		productImpl.setCategoryId(getCategoryId());
 
 		productImpl.resetOriginalValues();
 
@@ -729,14 +724,6 @@ public class ProductModelImpl
 			productCacheModel.price = price;
 		}
 
-		productCacheModel.category = getCategory();
-
-		String category = productCacheModel.category;
-
-		if ((category != null) && (category.length() == 0)) {
-			productCacheModel.category = null;
-		}
-
 		productCacheModel.images = getImages();
 
 		String images = productCacheModel.images;
@@ -744,6 +731,8 @@ public class ProductModelImpl
 		if ((images != null) && (images.length() == 0)) {
 			productCacheModel.images = null;
 		}
+
+		productCacheModel.categoryId = getCategoryId();
 
 		return productCacheModel;
 	}
@@ -829,8 +818,8 @@ public class ProductModelImpl
 	private String _name;
 	private String _description;
 	private Double _price;
-	private String _category;
 	private String _images;
+	private long _categoryId;
 
 	public <T> T getColumnValue(String columnName) {
 		Function<Product, Object> function = _attributeGetterFunctions.get(
@@ -869,8 +858,8 @@ public class ProductModelImpl
 		_columnOriginalValues.put("name", _name);
 		_columnOriginalValues.put("description", _description);
 		_columnOriginalValues.put("price", _price);
-		_columnOriginalValues.put("category", _category);
 		_columnOriginalValues.put("images", _images);
+		_columnOriginalValues.put("categoryId", _categoryId);
 	}
 
 	private transient Map<String, Object> _columnOriginalValues;
@@ -904,9 +893,9 @@ public class ProductModelImpl
 
 		columnBitmasks.put("price", 512L);
 
-		columnBitmasks.put("category", 1024L);
+		columnBitmasks.put("images", 1024L);
 
-		columnBitmasks.put("images", 2048L);
+		columnBitmasks.put("categoryId", 2048L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

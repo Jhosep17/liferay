@@ -230,21 +230,6 @@ public interface ProductModel
 	public void setPrice(Double price);
 
 	/**
-	 * Returns the category of this product.
-	 *
-	 * @return the category of this product
-	 */
-	@AutoEscape
-	public String getCategory();
-
-	/**
-	 * Sets the category of this product.
-	 *
-	 * @param category the category of this product
-	 */
-	public void setCategory(String category);
-
-	/**
 	 * Returns the images of this product.
 	 *
 	 * @return the images of this product
@@ -258,5 +243,19 @@ public interface ProductModel
 	 * @param images the images of this product
 	 */
 	public void setImages(String images);
+
+	/**
+	 * Returns the category ID of this product.
+	 *
+	 * @return the category ID of this product
+	 */
+	public long getCategoryId();
+
+	/**
+	 * Sets the category ID of this product.
+	 *
+	 * @param categoryId the category ID of this product
+	 */
+	public void setCategoryId(long categoryId);
 
 }

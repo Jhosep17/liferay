@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import edu.ecopharmacy.nttdata.bean.ProductBean;
 import edu.ecopharmacy.nttdata.model.Product;
 
 import java.io.Serializable;
@@ -241,6 +242,9 @@ public interface ProductLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Product> getProducts(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<ProductBean> getProductsAll();
+
 	/**
 	 * Returns the number of products.
 	 *
@@ -250,7 +254,7 @@ public interface ProductLocalService
 	public int getProductsCount();
 
 	public Product saveProduct(
-		String name, String description, String category, Double price,
+		String name, String description, long category, Double price,
 		String image);
 
 	/**

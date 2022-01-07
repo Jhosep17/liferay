@@ -283,6 +283,13 @@ public class ProductLocalServiceWrapper
 		return _productLocalService.getProducts(start, end);
 	}
 
+	@Override
+	public java.util.List<edu.ecopharmacy.nttdata.bean.ProductBean>
+		getProductsAll() {
+
+		return _productLocalService.getProductsAll();
+	}
+
 	/**
 	 * Returns the number of products.
 	 *
@@ -295,7 +302,7 @@ public class ProductLocalServiceWrapper
 
 	@Override
 	public edu.ecopharmacy.nttdata.model.Product saveProduct(
-		String name, String description, String category, Double price,
+		String name, String description, long category, Double price,
 		String image) {
 
 		return _productLocalService.saveProduct(

@@ -52,8 +52,8 @@ public class ProductWrapper
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
 		attributes.put("price", getPrice());
-		attributes.put("category", getCategory());
 		attributes.put("images", getImages());
+		attributes.put("categoryId", getCategoryId());
 
 		return attributes;
 	}
@@ -120,27 +120,27 @@ public class ProductWrapper
 			setPrice(price);
 		}
 
-		String category = (String)attributes.get("category");
-
-		if (category != null) {
-			setCategory(category);
-		}
-
 		String images = (String)attributes.get("images");
 
 		if (images != null) {
 			setImages(images);
 		}
+
+		Long categoryId = (Long)attributes.get("categoryId");
+
+		if (categoryId != null) {
+			setCategoryId(categoryId);
+		}
 	}
 
 	/**
-	 * Returns the category of this product.
+	 * Returns the category ID of this product.
 	 *
-	 * @return the category of this product
+	 * @return the category ID of this product
 	 */
 	@Override
-	public String getCategory() {
-		return model.getCategory();
+	public long getCategoryId() {
+		return model.getCategoryId();
 	}
 
 	/**
@@ -279,13 +279,13 @@ public class ProductWrapper
 	}
 
 	/**
-	 * Sets the category of this product.
+	 * Sets the category ID of this product.
 	 *
-	 * @param category the category of this product
+	 * @param categoryId the category ID of this product
 	 */
 	@Override
-	public void setCategory(String category) {
-		model.setCategory(category);
+	public void setCategoryId(long categoryId) {
+		model.setCategoryId(categoryId);
 	}
 
 	/**

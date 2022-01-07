@@ -43,8 +43,8 @@ public class ProductSoap implements Serializable {
 		soapModel.setName(model.getName());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setPrice(model.getPrice());
-		soapModel.setCategory(model.getCategory());
 		soapModel.setImages(model.getImages());
+		soapModel.setCategoryId(model.getCategoryId());
 
 		return soapModel;
 	}
@@ -178,20 +178,20 @@ public class ProductSoap implements Serializable {
 		_price = price;
 	}
 
-	public String getCategory() {
-		return _category;
-	}
-
-	public void setCategory(String category) {
-		_category = category;
-	}
-
 	public String getImages() {
 		return _images;
 	}
 
 	public void setImages(String images) {
 		_images = images;
+	}
+
+	public long getCategoryId() {
+		return _categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		_categoryId = categoryId;
 	}
 
 	private long _productId;
@@ -204,7 +204,7 @@ public class ProductSoap implements Serializable {
 	private String _name;
 	private String _description;
 	private Double _price;
-	private String _category;
 	private String _images;
+	private long _categoryId;
 
 }
